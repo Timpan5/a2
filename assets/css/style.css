@@ -1,0 +1,45 @@
+body {
+	background-color: #E8E8E8;
+}
+
+body.title {
+	text-align:center;
+}
+
+#highscore {
+	font-size: 200%;
+	margin-top: 0px;
+}
+
+#start a {
+	border: solid 5px black;
+	padding: 10px;
+	text-decoration: none;
+}
+
+#info {
+	width: 1000px;
+	height: 40px;
+	border: solid 2px black;
+}
+
+
+#info span {
+	padding-right: 8%;
+	padding-left: 8%;
+}
+
+canvas {
+	border: solid 2px black;
+	height: 600px;
+	width: 1000px;
+}
+
+#currentscore {
+	font-size: 200%;
+	margin-top: 0px;
+}
+
+#pause {
+	border: solid 2px black;
+}
