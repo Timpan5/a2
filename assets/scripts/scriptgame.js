@@ -31,7 +31,7 @@ window.onload = function() {
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
-    GlobalSpeed = 1;
+    GlobalSpeed = 5;
 	document.getElementById("pause").onclick = function() {	
 		var img = document.getElementById('pausebutton');
 		if (pause) {
@@ -49,16 +49,16 @@ window.onload = function() {
 	
 	window.setInterval(timer, 1000);
 
-	ob1 = new component(30, 30, "red", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    ob2 = new component(30, 30, "blue", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    ob3 = new component(30, 30, "green", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    ob4 = new component(30, 30, "purple", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    ob5 = new component(30, 30, "yellow", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    ob6 = new component(30, 30, "brown", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    ob7 = new component(30, 30, "gray", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    ob8 = new component(30, 30, "white", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    ob9 = new component(30, 30, "teal", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    ob10 = new component(30, 30, "orange", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+	ob1 = new component(30, 30, "red", Math.floor(Math.random() * 800) + 50, Math.floor(Math.random() * 500) + 50);
+    ob2 = new component(30, 30, "blue", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob3 = new component(30, 30, "green", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob4 = new component(30, 30, "purple", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob5 = new component(30, 30, "yellow", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob6 = new component(30, 30, "brown", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob7 = new component(30, 30, "gray", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob8 = new component(30, 30, "white", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob9 = new component(30, 30, "teal", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob10 = new component(30, 30, "orange", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
     myGameArea.start();
 
     document.getElementById('Canvas').addEventListener('click',function(event){
@@ -157,9 +157,11 @@ function component(width, height, color, x, y, type) {
             if (eventH(this, BH[i]) == true) {
                 this.e = true;
                 this.own = BH[i];
+            } else {
+                this. e = false;
             }
         } 
-        if (this.y < 10 || this.y > 260 || this.x < 10 || this.x > 470) {
+        if (this.y < 10 || this.y > 570 || this.x < 10 || this.x > 970) {
             this.angle = this.angle + 180;
         }  
         
@@ -209,7 +211,6 @@ function hole(x, y) {
         this.mybottom = this.y + (this.height) + 10;
         this.mX = mousex;
         this.mY = mousey;
-        //alert(this.mX + ',' + this.mY + ',L' + this.myleft + ',R' + this.myright + ',T' + this.mytop + ',B' + this.mybottom);
         if ((this.mY < this.mybottom) && (this.mY > this.mytop)
          && (this.mX > this.myleft) && (this.mX < this.myright) 
         ){
@@ -234,7 +235,7 @@ function eventH (a, b){
 
 function gen(){
     if (sec%5 == 0 && one == false){
-        BH[count] = new hole(Math.floor(Math.random() * 350), Math.floor(Math.random() * 200));
+        BH[count] = new hole(Math.floor(Math.random() * 900), Math.floor(Math.random() * 500));
         count += 1;
         one = true;
     } else if (sec%5 != 0){
