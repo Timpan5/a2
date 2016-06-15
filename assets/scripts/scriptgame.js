@@ -49,18 +49,20 @@ window.onload = function() {
 	
 	window.setInterval(timer, 1000);
 
-	ob1 = new component(30, 30, "red", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob2 = new component(30, 30, "blue", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob3 = new component(30, 30, "green", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob4 = new component(30, 30, "purple", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob5 = new component(30, 30, "yellow", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob6 = new component(30, 30, "brown", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob7 = new component(30, 30, "gray", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob8 = new component(30, 30, "white", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob9 = new component(30, 30, "teal", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob10 = new component(30, 30, "orange", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    //create space objects
+	ob1 = new space(30, 30, "red", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob2 = new space(30, 30, "blue", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob3 = new space(30, 30, "green", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob4 = new space(30, 30, "purple", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob5 = new space(30, 30, "yellow", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob6 = new space(30, 30, "brown", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob7 = new space(30, 30, "gray", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob8 = new space(30, 30, "white", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob9 = new space(30, 30, "teal", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob10 = new space(30, 30, "orange", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
     myGameArea.start();
 
+    //click handler
     document.getElementById('Canvas').addEventListener('click',function(event){
 
         for (i = 0; i < count; i++) { 
@@ -68,15 +70,6 @@ window.onload = function() {
             }
     },false);
 
-    // window.addEventListener("mouseover", function (event) {
-    //         myGameArea.x = event.clientX;
-    //         myGameArea.y = event.clientX;
-    //         for (i = 0; i < count; i++) { 
-    //             if (BH[i].clicked() == true){
-    //                 BH[i].x = 0;
-    //             }
-    //         }
-    //     })
 	
 } 
 
@@ -108,6 +101,7 @@ function PAUSE() {
 }
 
 var myGameArea = {
+    //set up canvas
     canvas : document.getElementById("Canvas"),
     start : function() {
         this.canvas.width = 1000;
@@ -128,30 +122,30 @@ var myGameArea = {
     }
 }
 
-function component(width, height, color, x, y, type) {
-
+function space(width, height, color, x, y, type) {
+    //object for space object
     this.type = type;
     this.width = width;
     this.height = height;
-    this.speed = GlobalSpeed;;
-    this.angle = Math.floor(Math.random() * 360) + 0;
+    this.speed = GlobalSpeed;
+    this.angle = Math.floor(Math.random() * 360) + 0; //direction
     this.x = x;
     this.y = y;    
     this.colour = color;
-    this.dx = 11;
+    this.dx = 11; //difference in x,y from blackhole
     this.dy = 11;
-    this.e = false;
-    this.own = null;
+    this.e = false; //encountered event horizon
+    this.own = null; //the blackhole thats pulling
     this.update = function() {
+        //draw object
         ctx = myGameArea.context;
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.fillStyle = this.colour;
         ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);        
         ctx.restore();   
-        
-
     }
+    //calculate next position
     this.newPos = function() {
         this.speed = GlobalSpeed;
         for (i = 0; i < count; i++) { 
@@ -162,23 +156,24 @@ function component(width, height, color, x, y, type) {
                 
             }
         } 
+        //bounce back from walls
         if (this.y < 10 || this.y > 600 || this.x < 10 || this.x > 970) {
             this.angle = this.angle + 180;
         }  
-        
+        //if engaged in horizon, move towards black hole
         if (this.e == true){
             this.dx = this.own.x + 25 - this.x;
             this.dy = this.own.y + 25 - this.y;
             this.angle = Math.atan2(this.dx, this.dy) * 180/Math.PI;
-            if (GlobalSpeed == 0){
+            if (GlobalSpeed == 0){ //if paused, stop movement
                 this.speed = 0;
             } else  {
                 this.speed = 0.5 * this.own.type;
             }
-            if(this.own.x == -100){
+            if(this.own.x == -100){ //disengage event horizon if blackhole dissapears
                 this.e = false;
             }
-            this.x += this.speed * Math.sin(this.angle);
+            this.x += this.speed * Math.sin(this.angle); //calculate new position using position and speed
             this.y += this.speed * Math.cos(this.angle);
 
         } else {
@@ -187,25 +182,25 @@ function component(width, height, color, x, y, type) {
             this.y += this.speed * Math.cos(this.angle);
         }
 
-        if (Math.abs(this.dx) < 10 && Math.abs(this.dy) < 10 && eventH(this, this.own) == true){
-                this.x = -1000;
-                this.speed = 0;
-                this.own.eat += 1;
-                score -= 50;
+        if (Math.abs(this.dx) <= 10 && Math.abs(this.dy) <= 10 && eventH(this, this.own) == true){
+            //when eaten by black hole, 
+            this.x = -1000; //remove object
+            this.speed = 0; //stop object movement
+            this.own.eat += 1; //add a counter to blackhole
+            score -= 50; //add score
         }
     }
 }
 
 function hole(x, y, type) {
-
+    //blackhole object
     this.width = 50;
     this.height = 50;
-    this.EH = 100;
     this.x = x;
     this.y = y; 
-    this.eat = 0;
-    this.type = type;
-    //alert(this.x + ',' + this.y);
+    this.eat = 0; //counter for blackhole for when its eaten its max objects then dissapears
+    this.type = type; //Type of blackhole, fast , slow etc.
+    //draw blackhole
     this.update = function() {
         if (this.eat == 3){
             this.x = -100;
@@ -222,6 +217,7 @@ function hole(x, y, type) {
         ctx.fillStyle = 'rgba(225,225,225,0.7)';
         ctx.fillRect(this.x, this.y, this.width, this.height);      
     } 
+    //see if blackhole is clicked
     this.clicked = function(mousex, mousey) {
         this.myleft = this.x + 10;
         this.myright = this.x + (this.width) + 10;
@@ -229,11 +225,11 @@ function hole(x, y, type) {
         this.mybottom = this.y + (this.height) + 10;
         this.mX = mousex;
         this.mY = mousey;
-        //alert(this.mX + ',' + this.mY + ',L' + this.myleft + ',R' + this.myright + ',T' + this.mytop + ',B' + this.mybottom);
-        if ((this.mY < this.mybottom) && (this.mY > this.mytop)
+        if ((this.mY < this.mybottom) && (this.mY > this.mytop) //check location of click falls within black hole
          && (this.mX > this.myleft) && (this.mX < this.myright) 
         ){
-            this.x = -100;
+            this.x = -100;//remove black hole
+            //differing black holes
             if (this.type == 1){
                 localStorage.getItem("currentScore") += 5;
             } else if (this.type == 2){
@@ -246,6 +242,7 @@ function hole(x, y, type) {
 }
 
 function eventH (a, b){
+    //calculate whether 2 objects are in contact
     var aleft = a.x;
     var atop = a.y;
     var bleft = b.x - 40;
@@ -260,6 +257,7 @@ function eventH (a, b){
 }
 
 function gen(){
+    //generate black holes every 5 seconds
     if (sec%5 == 0 && one == false){
         BH[count] = new hole(Math.floor(Math.random() * 900), Math.floor(Math.random() * 500), Btype());
         count += 1;
@@ -273,6 +271,7 @@ function gen(){
 }
 
 function Btype(){
+    //random generator for blackhole type
     this.rand = Math.floor(Math.random() * 100);
     if (this.rand < 11){
         return 3;
@@ -285,6 +284,7 @@ function Btype(){
 
 
 function updateGameArea() {
+    //update each frame
     myGameArea.clear();
     gen();
     for (i = 0; i < count; i++) { 
