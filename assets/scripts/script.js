@@ -96,10 +96,12 @@ function timer() {
 		if (sec == 0 && currentLevel == 1) {
 			currentLevel = 2;
 			localStorage.setItem("currentScore", score);
+			 myGameArea.stop();
 			tran1();
 		}
 		else if (sec == 0 && currentLevel == 2) {
 			localStorage.setItem("currentScore", score);
+			 myGameArea.stop();
 			tran2();
 		}
 	}
