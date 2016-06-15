@@ -9,27 +9,75 @@
 		<title> Space Survival </title> 
 	</head>
 	
-	<body class="title">
+	<body id="primary">
 	
+		<section id="titlescreen">
 		<section id="title">
 			<h1> Space Survival </h1>
 		</section>
 		
-		<section id="score">
+		<section id="scorelist">
 			<h2> High Score </h2>
 			<p id="highscore"> </p>
 		</section>
 		
 		<section id="start">
-			<a href="game.html" onclick="firstLevel()"><img id="startbutton" src="assets/images/startbutton.png" alt="START" ></a>
+			<a href="#" onclick="firstLevel()"><img id="startbutton" src="assets/images/startbutton.png" alt="START" ></a>
 		</section>
+		</section>
+		
+		<section id="gamescreen">
+		<section id="info">
+			<hr>
+			<span id="level"> Level # </span>
+			<span id="score"> Score </span>
+			<span id="pause"><a href="#"><img id="pausebutton" src="assets/images/pause.png" alt="PAUSE" ></a></span>
+			<span id="second"> ## Seconds </span>
+		</section>
+
+		<canvas id = "Canvas"></canvas>
+		</section>
+		
+		<section id="transition1">
+		<section id="title">
+			<h1> Level 1 </h1>
+		</section>
+		
+		<section id="tscore">
+			<h1> Score: </h2>
+			<p id="currentscore"> </p>
+		</section>
+		
+		<section id="next">
+			<a href="#" onclick="secondLevel()"><img id="nextButton" src="assets/images/next.png" alt="NEXT" ></a>
+		</section>
+		</section>
+		
+		<section id="transition2">
+		<section id="ftitle">
+			<h1> Level 2 </h1>
+		</section>
+		
+		<section id="fscore">
+			<h1> Score: </h2>
+			<p id="finalscore"> </p>
+		</section>
+		
+		<section id="finish">
+			<a href="#" onclick="init()"><img id="end" src="assets/images/end.jpg" alt="FINISH" ></a>
+		</section>
+		</section>
+
 		
 	</body>
 	
 	<footer>
-		<p> Copywrite Information </p>
+		<p> Copyright Information </p>
 		<p> Background Image: http://www.space.com/32997-classic-model-of-a-familiar-system.html </p>
 		<p> Start Button: https://pixabay.com/en/start-button-icon-back-web-1426743/ </p>
+		<p> Pause Button: https://pixabay.com/en/icon-green-button-clip-art-forward-156757/ </p>
+		<p> Resume Button: https://pixabay.com/en/icon-green-button-clip-art-forward-156758/ </p>
+		<p> Next Button: https://pixabay.com/en/arrows-right-direction-sign-symbol-309036/ </p>
 	</footer>
 	
 </html>

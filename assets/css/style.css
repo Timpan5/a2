@@ -1,8 +1,6 @@
-body {
-	
-}
 
-body.title {
+
+body {
 	text-align:center;
 	color: #00ff00;
 	background-image: url(../images/space.jpg);
@@ -10,13 +8,13 @@ body.title {
 	background-size: cover;
 }
 
-body.title h1 {
+body h1 {
 	font-size: 500%;
 	color: white;
 }
 
 footer {
-	font-size: 75%;
+	font-size: 65%;
 	color: black;
 	position: fixed;
 	bottom: 0;
@@ -78,3 +76,49 @@ footer {
 	padding-top: 10px;
 }
 
+#transition1 {
+	background-image: url(../images/space.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 75%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#transition1 h1 {
+	color: white;
+	font-size: 300%;
+}
+
+#nextButton {
+	width: 100px;
+	height: 100px;
+}
+
+#transition2 {
+	background-image: url(../images/space.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 75%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#transition2 h1 {
+	color: white;
+	font-size: 300%;
+}
+
+#finalscore {
+	font-size: 200%;
+	margin-top: 0px;
+}
+
+#end{
+	width: 50%;
+	height: 50%;
+}
