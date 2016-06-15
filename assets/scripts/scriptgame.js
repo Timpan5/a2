@@ -1,11 +1,25 @@
 var sec;
 var score;
 var pause;
+var PAUSE;
 
-var test;
-var test2;
-var test3;
-var BH;
+var ob1;
+var ob2;
+var ob3;
+var ob4;
+var ob5;
+var ob6;
+var ob7;
+var ob8;
+var ob9;
+var ob10;
+var BH = [];
+var count = 0;
+var BH1;
+var BH2;
+var BH3;
+var one = false;
+var GlobalSpeed;
 window.onload = function() {
 
 	document.getElementById("level").innerHTML = "Level " + localStorage.getItem("currentLevel"); 
@@ -17,14 +31,17 @@ window.onload = function() {
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
+    GlobalSpeed = 1;
 	document.getElementById("pause").onclick = function() {	
 		var img = document.getElementById('pausebutton');
 		if (pause) {
 			pause = 0;
+            GlobalSpeed = 1;
 			img.src = "assets/images/pause.png";
 		}
 		else {
 			pause = 1;
+            GlobalSpeed = 0;
 			img.src = "assets/images/resume.png";
 		}
 
@@ -32,10 +49,16 @@ window.onload = function() {
 	
 	window.setInterval(timer, 1000);
 
-	test = new component(30, 30, "red", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    test2 = new component(30, 30, "blue", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    test3 = new component(30, 30, "green", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    BH = new hole(200, 100);
+	ob1 = new component(30, 30, "red", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+    ob2 = new component(30, 30, "blue", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+    ob3 = new component(30, 30, "green", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+    ob4 = new component(30, 30, "purple", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+    ob5 = new component(30, 30, "yellow", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+    ob6 = new component(30, 30, "brown", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+    ob7 = new component(30, 30, "gray", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+    ob8 = new component(30, 30, "white", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+    ob9 = new component(30, 30, "teal", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+    ob10 = new component(30, 30, "orange", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
     myGameArea.start();
 	
 } 
@@ -62,6 +85,11 @@ function timer() {
 	
 }
 
+
+function PAUSE() {
+    PAUSE = setTimeout(updateGameArea, 3000);
+}
+
 var myGameArea = {
     canvas : document.getElementById("Canvas"),
     start : function() {
@@ -85,7 +113,7 @@ function component(width, height, color, x, y, type) {
     this.type = type;
     this.width = width;
     this.height = height;
-    this.speed = 5;
+    this.speed = GlobalSpeed;;
     this.angle = Math.floor(Math.random() * 360) + 0;
     this.x = x;
     this.y = y;    
@@ -93,6 +121,7 @@ function component(width, height, color, x, y, type) {
     this.dx = 3;
     this.dy = 3;
     this.e = false;
+    this.own = null;
     this.update = function() {
         ctx = myGameArea.context;
         ctx.save();
@@ -104,28 +133,35 @@ function component(width, height, color, x, y, type) {
 
     }
     this.newPos = function() {
+        for (i = 0; i < count; i++) { 
+            if (eventH(this, BH[i]) == true) {
+                this.e = true;
+                this.own = BH[i];
+            }
+        } 
         if (this.y < 10 || this.y > 260 || this.x < 10 || this.x > 470) {
             this.angle = this.angle + 180;
         }  
         
-        if (eventH(this, BH) == true) {
-            this.e = true;
-        }
         if (this.e == true){
-            this.dx = BH.x + 25 - this.x;
-            this.dy = BH.y + 25 - this.y;
+            this.dx = this.own.x + 25 - this.x;
+            this.dy = this.own.y + 25 - this.y;
             this.angle = Math.atan2(this.dx, this.dy) * 180/Math.PI;
-            this.speed = 0.5;
+            if (GlobalSpeed == 0){
+                this.speed = 0;
+            } else  {
+                this.speed = 0.5;
+            }
             this.x += this.speed * Math.sin(this.angle);
             this.y += this.speed * Math.cos(this.angle);
 
         } else {
-            this.speed = 5;
+            this.speed = GlobalSpeed;
             this.x += this.speed * Math.sin(this.angle);
             this.y += this.speed * Math.cos(this.angle);
         }
 
-        if (Math.abs(this.dx) < 2 && Math.abs(this.dy) < 2 && eventH(this, BH) == true){
+        if (Math.abs(this.dx) < 2 && Math.abs(this.dy) < 2 && eventH(this, this.own) == true){
                 this.colour = "black";
         }
     }
@@ -161,14 +197,41 @@ function eventH (a, b){
     return crash;
 }
 
+function gen(){
+    if (sec%5 == 0 && one == false){
+        BH[count] = new hole(Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+        count += 1;
+        one = true;
+    } else if (sec%5 != 0){
+        one = false;
+    }
+}
+
 function updateGameArea() {
     myGameArea.clear();
+    gen();
+    for (i = 0; i < count; i++) { 
+        BH[i].update();
+    } 
+    ob1.newPos();
+    ob2.newPos();
+    ob3.newPos();
+    ob4.newPos();
+    ob5.newPos();
+    ob6.newPos();
+    ob7.newPos();
+    ob8.newPos();
+    ob9.newPos();
+    ob10.newPos();
+    ob1.update();
+    ob2.update();
+    ob3.update();
+    ob4.update();
+    ob5.update();
+    ob6.update();
+    ob7.update();
+    ob8.update();
+    ob9.update();
+    ob10.update();
     
-    test.newPos();
-    test2.newPos();
-    test3.newPos();
-    test.update();
-    test2.update();
-    test3.update();
-    BH.update();
 }
