@@ -18,11 +18,14 @@ window.onload = function() {
 	
 	pause = 0;
 	document.getElementById("pause").onclick = function() {	
+		var img = document.getElementById('pausebutton');
 		if (pause) {
 			pause = 0;
+			img.src = "assets/images/pause.png";
 		}
 		else {
 			pause = 1;
+			img.src = "assets/images/resume.png";
 		}
 
 	};
