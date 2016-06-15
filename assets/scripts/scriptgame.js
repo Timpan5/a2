@@ -49,7 +49,7 @@ window.onload = function() {
 	
 	window.setInterval(timer, 1000);
 
-	ob1 = new component(30, 30, "red", Math.floor(Math.random() * 800) + 50, Math.floor(Math.random() * 500) + 50);
+	ob1 = new component(30, 30, "red", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
     ob2 = new component(30, 30, "blue", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
     ob3 = new component(30, 30, "green", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
     ob4 = new component(30, 30, "purple", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
@@ -111,7 +111,7 @@ var myGameArea = {
     canvas : document.getElementById("Canvas"),
     start : function() {
         this.canvas.width = 1000;
-        this.canvas.height = 600;
+        this.canvas.height = 640;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -138,8 +138,8 @@ function component(width, height, color, x, y, type) {
     this.x = x;
     this.y = y;    
     this.colour = color;
-    this.dx = 3;
-    this.dy = 3;
+    this.dx = 11;
+    this.dy = 11;
     this.e = false;
     this.own = null;
     this.update = function() {
@@ -153,15 +153,16 @@ function component(width, height, color, x, y, type) {
 
     }
     this.newPos = function() {
+        this.speed = GlobalSpeed;
         for (i = 0; i < count; i++) { 
             if (eventH(this, BH[i]) == true) {
                 this.e = true;
                 this.own = BH[i];
             } else {
-                this. e = false;
+                
             }
         } 
-        if (this.y < 10 || this.y > 570 || this.x < 10 || this.x > 970) {
+        if (this.y < 10 || this.y > 600 || this.x < 10 || this.x > 970) {
             this.angle = this.angle + 180;
         }  
         
@@ -172,34 +173,51 @@ function component(width, height, color, x, y, type) {
             if (GlobalSpeed == 0){
                 this.speed = 0;
             } else  {
-                this.speed = 0.5;
+                this.speed = 0.5 * this.own.type;
+            }
+            if(this.own.x == -100){
+                this.e = false;
             }
             this.x += this.speed * Math.sin(this.angle);
             this.y += this.speed * Math.cos(this.angle);
 
         } else {
-            this.speed = GlobalSpeed;
+            
             this.x += this.speed * Math.sin(this.angle);
             this.y += this.speed * Math.cos(this.angle);
         }
 
-        if (Math.abs(this.dx) < 2 && Math.abs(this.dy) < 2 && eventH(this, this.own) == true){
-                this.colour = "black";
+        if (Math.abs(this.dx) < 10 && Math.abs(this.dy) < 10 && eventH(this, this.own) == true){
+                this.x = -1000;
+                this.speed = 0;
+                this.own.eat += 1;
+                score -= 50;
         }
     }
 }
 
-function hole(x, y) {
+function hole(x, y, type) {
 
     this.width = 50;
     this.height = 50;
     this.EH = 100;
     this.x = x;
     this.y = y; 
+    this.eat = 0;
+    this.type = type;
     //alert(this.x + ',' + this.y);
     this.update = function() {
+        if (this.eat == 3){
+            this.x = -100;
+        }
         ctx = myGameArea.context;
-        ctx.fillStyle = 'rgba(0,0,0,0.7)';
+        if (this.type == 1){
+            ctx.fillStyle = 'rgba(0,0,0,0.7)';
+        } else if (this.type == 2){
+            ctx.fillStyle = 'rgba(100,0,0,0.7)';
+        } else if (this.type == 3){
+            ctx.fillStyle = 'rgba(100,100,0,0.7)';
+        }
         ctx.fillRect(this.x - 25, this.y - 25, this.width + 50, this.height + 50);   
         ctx.fillStyle = 'rgba(225,225,225,0.7)';
         ctx.fillRect(this.x, this.y, this.width, this.height);      
@@ -211,10 +229,18 @@ function hole(x, y) {
         this.mybottom = this.y + (this.height) + 10;
         this.mX = mousex;
         this.mY = mousey;
+        //alert(this.mX + ',' + this.mY + ',L' + this.myleft + ',R' + this.myright + ',T' + this.mytop + ',B' + this.mybottom);
         if ((this.mY < this.mybottom) && (this.mY > this.mytop)
          && (this.mX > this.myleft) && (this.mX < this.myright) 
         ){
-            this.x = 0;
+            this.x = -100;
+            if (this.type == 1){
+                localStorage.getItem("currentScore") += 5;
+            } else if (this.type == 2){
+                localStorage.getItem("currentScore") += 10;
+            } else if (this.type == 3){
+                localStorage.getItem("currentScore") += 15;
+            }
         }
     }
 }
@@ -235,13 +261,28 @@ function eventH (a, b){
 
 function gen(){
     if (sec%5 == 0 && one == false){
-        BH[count] = new hole(Math.floor(Math.random() * 900), Math.floor(Math.random() * 500));
+        BH[count] = new hole(Math.floor(Math.random() * 900), Math.floor(Math.random() * 500), Btype());
         count += 1;
+        if (localStorage.getItem("currentLevel") == 2){
+            BH[count] = new hole(Math.floor(Math.random() * 900), Math.floor(Math.random() * 500), Btype());
+        }
         one = true;
     } else if (sec%5 != 0){
         one = false;
     }
 }
+
+function Btype(){
+    this.rand = Math.floor(Math.random() * 100);
+    if (this.rand < 11){
+        return 3;
+    } else if (this.rand < 40) {
+        return 2;
+    } else{
+        return 1;
+    }
+}
+
 
 function updateGameArea() {
     myGameArea.clear();
