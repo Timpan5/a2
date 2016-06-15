@@ -14,6 +14,7 @@ var BH;
 window.onload = function() {
 	
 	window.setInterval(timer, 1000);
+	
 	init();
 
   
@@ -34,11 +35,13 @@ function init() {
 	document.getElementById("transition1").style.display = "none";
 	document.getElementById("transition2").style.display = "none";
 	
-	currentLevel = 1;
-	currentScore = 200;
 	
 	document.getElementById("Canvas").style.display = "none";
+	
+	document.getElementById("pauseoverlay").style.display = "none";
 
+	currentLevel = 1;
+	currentScore = 200;
 	
 
 }
@@ -65,10 +68,12 @@ function firstLevel() {
 		if (pause) {
 			pause = 0;
 			img.src = "assets/images/pause.png";
+			document.getElementById("pauseoverlay").style.display = "none";
 		}
 		else {
 			pause = 1;
 			img.src = "assets/images/resume.png";
+			document.getElementById("pauseoverlay").style.display = "initial";
 		}
 
 	};
@@ -145,10 +150,12 @@ function secondLevel() {
 		if (pause) {
 			pause = 0;
 			img.src = "assets/images/pause.png";
+			document.getElementById("pauseoverlay").style.display = "none";
 		}
 		else {
 			pause = 1;
 			img.src = "assets/images/resume.png";
+			document.getElementById("pauseoverlay").style.display = "initial";
 		}
 
 	};
