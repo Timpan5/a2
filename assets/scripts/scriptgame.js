@@ -27,7 +27,7 @@ window.onload = function() {
 	score = localStorage.getItem("currentScore");
 	document.getElementById("score").innerHTML = score; 
      
-	sec = 999;
+	sec = 1000;
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
@@ -60,6 +60,23 @@ window.onload = function() {
     ob9 = new component(30, 30, "teal", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
     ob10 = new component(30, 30, "orange", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
     myGameArea.start();
+
+    document.getElementById('Canvas').addEventListener('click',function(event){
+
+        for (i = 0; i < count; i++) { 
+                BH[i].clicked(event.clientX, event.clientY);
+            }
+    },false);
+
+    // window.addEventListener("mouseover", function (event) {
+    //         myGameArea.x = event.clientX;
+    //         myGameArea.y = event.clientX;
+    //         for (i = 0; i < count; i++) { 
+    //             if (BH[i].clicked() == true){
+    //                 BH[i].x = 0;
+    //             }
+    //         }
+    //     })
 	
 } 
 
@@ -93,12 +110,15 @@ function PAUSE() {
 var myGameArea = {
     canvas : document.getElementById("Canvas"),
     start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 270;
+        this.canvas.width = 1000;
+        this.canvas.height = 600;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
+        
+    
+       
     },
     stop : function() {
         clearInterval(this.interval);
@@ -174,6 +194,7 @@ function hole(x, y) {
     this.EH = 100;
     this.x = x;
     this.y = y; 
+    //alert(this.x + ',' + this.y);
     this.update = function() {
         ctx = myGameArea.context;
         ctx.fillStyle = 'rgba(0,0,0,0.7)';
@@ -181,14 +202,28 @@ function hole(x, y) {
         ctx.fillStyle = 'rgba(225,225,225,0.7)';
         ctx.fillRect(this.x, this.y, this.width, this.height);      
     } 
+    this.clicked = function(mousex, mousey) {
+        this.myleft = this.x + 10;
+        this.myright = this.x + (this.width) + 10;
+        this.mytop = this.y + 10;
+        this.mybottom = this.y + (this.height) + 10;
+        this.mX = mousex;
+        this.mY = mousey;
+        //alert(this.mX + ',' + this.mY + ',L' + this.myleft + ',R' + this.myright + ',T' + this.mytop + ',B' + this.mybottom);
+        if ((this.mY < this.mybottom) && (this.mY > this.mytop)
+         && (this.mX > this.myleft) && (this.mX < this.myright) 
+        ){
+            this.x = 0;
+        }
+    }
 }
 
 function eventH (a, b){
     var aleft = a.x;
     var atop = a.y;
-    var bleft = b.x - 45;
+    var bleft = b.x - 40;
     var bright = b.x + 90;
-    var btop = b.y - 45;
+    var btop = b.y - 40;
     var bbottom = b.y + 90;
     var crash = false;
     if (aleft > bleft && atop > btop && aleft < bright && atop < bbottom){
@@ -199,7 +234,7 @@ function eventH (a, b){
 
 function gen(){
     if (sec%5 == 0 && one == false){
-        BH[count] = new hole(Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
+        BH[count] = new hole(Math.floor(Math.random() * 350), Math.floor(Math.random() * 200));
         count += 1;
         one = true;
     } else if (sec%5 != 0){
@@ -233,5 +268,6 @@ function updateGameArea() {
     ob8.update();
     ob9.update();
     ob10.update();
+
     
 }
