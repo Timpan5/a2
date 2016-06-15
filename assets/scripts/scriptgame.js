@@ -87,8 +87,8 @@ function component(width, height, color, x, y, type) {
     this.x = x;
     this.y = y;    
     this.colour = color;
-    this.dx = 0;
-    this.dy = 0;
+    this.dx = 3;
+    this.dy = 3;
     this.e = false;
     this.update = function() {
         ctx = myGameArea.context;
@@ -109,8 +109,8 @@ function component(width, height, color, x, y, type) {
             this.e = true;
         }
         if (this.e == true){
-            this.dx = BH.x - this.x;
-            this.dy = BH.y - this.y;
+            this.dx = BH.x + 25 - this.x;
+            this.dy = BH.y + 25 - this.y;
             this.angle = Math.atan2(this.dx, this.dy) * 180/Math.PI;
             this.speed = 0.5;
             this.x += this.speed * Math.sin(this.angle);
@@ -122,7 +122,7 @@ function component(width, height, color, x, y, type) {
             this.y += this.speed * Math.cos(this.angle);
         }
 
-        if (this.x == BH.x){
+        if (Math.abs(this.dx) < 2 && Math.abs(this.dy) < 2 && eventH(this, BH) == true){
                 this.colour = "black";
         }
     }
