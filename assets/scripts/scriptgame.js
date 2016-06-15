@@ -86,12 +86,15 @@ function component(width, height, color, x, y, type) {
     this.angle = Math.floor(Math.random() * 360) + 0;
     this.x = x;
     this.y = y;    
+    this.colour = color;
+    this.dx = 0;
+    this.dy = 0;
+    this.e = false;
     this.update = function() {
         ctx = myGameArea.context;
         ctx.save();
         ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-        ctx.fillStyle = color;
+        ctx.fillStyle = this.colour;
         ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);        
         ctx.restore();   
         
@@ -101,10 +104,26 @@ function component(width, height, color, x, y, type) {
         if (this.y < 10 || this.y > 260 || this.x < 10 || this.x > 470) {
             this.angle = this.angle + 180;
         }  
-        this.x += this.speed * Math.sin(this.angle);
-        this.y += this.speed * Math.cos(this.angle);
-        if (eventH(test, BH) == false) {
-            test.speed = 0;
+        
+        if (eventH(this, BH) == true) {
+            this.e = true;
+        }
+        if (this.e == true){
+            this.dx = BH.x - this.x;
+            this.dy = BH.y - this.y;
+            this.angle = Math.atan2(this.dx, this.dy) * 180/Math.PI;
+            this.speed = 0.5;
+            this.x += this.speed * Math.sin(this.angle);
+            this.y += this.speed * Math.cos(this.angle);
+
+        } else {
+            this.speed = 5;
+            this.x += this.speed * Math.sin(this.angle);
+            this.y += this.speed * Math.cos(this.angle);
+        }
+
+        if (this.x == BH.x){
+                this.colour = "black";
         }
     }
 }
@@ -118,26 +137,23 @@ function hole(x, y) {
     this.y = y; 
     this.update = function() {
         ctx = myGameArea.context;
-        
-        ctx.fillStyle = "gray";
+        ctx.fillStyle = 'rgba(0,0,0,0.7)';
         ctx.fillRect(this.x - 25, this.y - 25, this.width + 50, this.height + 50);   
-        ctx.fillStyle = "black";
+        ctx.fillStyle = 'rgba(225,225,225,0.7)';
         ctx.fillRect(this.x, this.y, this.width, this.height);      
     } 
 }
 
 function eventH (a, b){
     var aleft = a.x;
-    var aright = a.x + (a.width);
     var atop = a.y;
-    var abottom = a.y + (a.height);
-    var bleft = 100;
-    var bright = b.x + (b.width);
-    var btop = b.y;
-    var bbottom = b.y + (b.height);
-    var crash = true;
-    if (aleft < bright && atop < bbottom && aright > bleft && abottom > btop) {
-        crash = false;
+    var bleft = b.x - 45;
+    var bright = b.x + 90;
+    var btop = b.y - 45;
+    var bbottom = b.y + 90;
+    var crash = false;
+    if (aleft > bleft && atop > btop && aleft < bright && atop < bbottom){
+        crash = true;
     }
     return crash;
 }
