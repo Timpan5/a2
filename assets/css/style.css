@@ -1,38 +1,70 @@
 body {
-	background-color: #E8E8E8;
+	
 }
 
 body.title {
 	text-align:center;
+	color: #00ff00;
+	background-image: url(../images/space.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+body.title h1 {
+	font-size: 500%;
+	color: white;
+}
+
+footer {
+	font-size: 75%;
+	color: black;
+	position: fixed;
+	bottom: 0;
+	right: 0;
 }
 
 #highscore {
 	font-size: 200%;
 	margin-top: 0px;
+	text-shadow: 2px 2px black;
 }
 
-#start a {
-	border: solid 5px black;
-	padding: 10px;
-	text-decoration: none;
+#startbutton {
+	height: auto;
+	width: auto;
+	width:150px;
+	height: 150px;
 }
 
 #info {
 	width: 1000px;
+	background-color: #4d94ff;
+	color: #66ff33;
 	height: 40px;
 	border: solid 2px black;
 }
 
+#info hr {
+	margin-top: -15px;
+}
 
 #info span {
 	padding-right: 8%;
 	padding-left: 8%;
+	margin-top: 55px;
+	line-height: 20px;
+	vertical-align: middle;
+	font-size: 150%;
+	line-height: 20px;
 }
 
 #Canvas {
 	border: solid 2px black;
 	height: 600px;
 	width: 1000px;
+	background-image: url(../images/space.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 #currentscore {
@@ -40,6 +72,9 @@ body.title {
 	margin-top: 0px;
 }
 
-#pause {
-	border: solid 2px black;
+#pausebutton {
+	width:35px;
+	height: 30px;
+	padding-top: 10px;
 }
+
