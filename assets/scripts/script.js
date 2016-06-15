@@ -13,6 +13,7 @@ var BH;
 
 window.onload = function() {
 	
+	window.setInterval(timer, 1000);
 	init();
 
   
@@ -23,22 +24,30 @@ function init() {
 		localStorage.setItem("highscore", "0");
 	}
 
+	
 	document.getElementById("highscore").innerHTML = localStorage.getItem("highscore"); 
 	
 	document.getElementById("titlescreen").style.display = "initial";
 	document.body.style.backgroundPosition = "initial";
+	
 	document.getElementById("gamescreen").style.display = "none";
 	document.getElementById("transition1").style.display = "none";
 	document.getElementById("transition2").style.display = "none";
 	
 	currentLevel = 1;
 	currentScore = 200;
+	
+	document.getElementById("Canvas").style.display = "none";
+
+	
+
 }
 
 
 function firstLevel() {
 	
 	document.getElementById("gamescreen").style.display = "initial";
+	document.getElementById("Canvas").style.display = "initial";
 	document.getElementById("titlescreen").style.display = "none";
 	document.body.style.backgroundPosition = "-9999px"; 
 	//document.body.style.backgroundImage = "none";
@@ -47,7 +56,7 @@ function firstLevel() {
 	
 	document.getElementById("score").innerHTML = currentScore; 
      
-	sec = 2;
+	sec = 3;
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
@@ -64,7 +73,7 @@ function firstLevel() {
 
 	};
 	
-	window.setInterval(timer, 1000);
+
 
 	test = new component(30, 30, "red", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
     test2 = new component(30, 30, "blue", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
@@ -100,7 +109,12 @@ function timer() {
 
 function tran1() {
 	document.getElementById("gamescreen").style.display = "none";
-	document.getElementById("Canvas").style.display = "none";
+	
+	//document.getElementById("Canvas").style.display = "none";
+	//document.getElementById("Canvas").style.width = "1px";
+	//document.getElementById("Canvas").style.height = "1px";
+	myGameArea.clear();
+	
 	document.getElementById("transition1").style.display = "initial";
 
 	document.getElementById("currentscore").innerHTML = currentScore; 
@@ -112,13 +126,15 @@ function secondLevel() {
 	
 	document.getElementById("gamescreen").style.display = "initial";
 	
+	document.getElementById("Canvas").style.display = "initial";
+	
 	currentLevel = 2;
 	
 	document.getElementById("level").innerHTML = "Level " + currentLevel; 
 	
 	document.getElementById("score").innerHTML = currentScore; 
      
-	sec = 2;
+	sec = 3;
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
@@ -135,14 +151,15 @@ function secondLevel() {
 
 	};
 	
-
-	window.setInterval(timer, 1000);
-
+	myGameArea.start();
 }
 
 function tran2() {
 	document.getElementById("gamescreen").style.display = "none";
-	document.getElementById("Canvas").style.display = "none";
+	//document.getElementById("Canvas").style.width = "1px";
+	//document.getElementById("Canvas").style.height = "1px";
+	myGameArea.clear();
+	
 	document.getElementById("transition2").style.display = "initial";
 	
 	document.getElementById("finalscore").innerHTML = currentScore; 
@@ -166,7 +183,7 @@ var myGameArea = {
         clearInterval(this.interval);
     },    
     clear : function() {
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context.clearRect(1, 1, this.canvas.width, this.canvas.height);
     }
 }
 

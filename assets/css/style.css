@@ -6,6 +6,7 @@ body {
 	background-image: url(../images/space.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
+	background-color: black;
 }
 
 body h1 {
@@ -19,6 +20,7 @@ footer {
 	position: fixed;
 	bottom: 0;
 	right: 0;
+	background-color: white;
 }
 
 #highscore {
