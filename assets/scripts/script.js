@@ -21,6 +21,7 @@ var one = false;
 var GlobalSpeed;
 
 
+
 window.onload = function() {
 	
 	window.setInterval(timer, 1000);
@@ -51,6 +52,8 @@ function init() {
 	document.getElementById("Canvas").style.display = "none";
 	
 	document.getElementById("pauseoverlay").style.display = "none";
+	
+	document.getElementById("copyright").style.display = "initial";
 
 	currentLevel = 1;
 	currentScore = 200;
@@ -89,14 +92,22 @@ function firstLevel() {
 	document.getElementById("gamescreen").style.display = "initial";
 	document.getElementById("Canvas").style.display = "initial";
 	document.getElementById("titlescreen").style.display = "none";
+	document.getElementById("copyright").style.display = "none";
 	document.body.style.backgroundPosition = "-9999px"; 
+	
 	//document.body.style.backgroundImage = "none";
 	
 	document.getElementById("level").innerHTML = "Level " + currentLevel; 
 	
 	document.getElementById("score").innerHTML = currentScore; 
      
+<<<<<<< HEAD
 	sec = 10;
+=======
+
+	sec = 80;
+
+>>>>>>> da535db2aba77e3a978b9e4f39712abba7b6f7f0
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
@@ -116,6 +127,10 @@ function firstLevel() {
 		}
 
 	};
+<<<<<<< HEAD
+=======
+	
+>>>>>>> da535db2aba77e3a978b9e4f39712abba7b6f7f0
 	myGameArea.stop();
     myGameArea.start();
 	
@@ -179,7 +194,9 @@ function secondLevel() {
 	
 	document.getElementById("score").innerHTML = currentScore; 
      
-	sec = 99;
+
+	sec = 80;
+
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
@@ -265,8 +282,330 @@ function space(color, x, y, type) {
         ctx = myGameArea.context;
         ctx.save();
         ctx.translate(this.x, this.y);
-        ctx.fillStyle = this.colour;
-        ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);        
+        //ctx.fillStyle = this.colour;
+        //ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);   
+
+		ctx.beginPath();
+		
+ctx.moveTo(-35+this.x,-134+this.y);
+ctx.lineTo(-35+this.x,-134+this.y);
+ctx.lineTo(-35+this.x,-135+this.y);
+ctx.lineTo(-35+this.x,-136+this.y);
+ctx.lineTo(-35+this.x,-137+this.y);
+ctx.lineTo(-36+this.x,-137+this.y);
+ctx.lineTo(-36+this.x,-138+this.y);
+ctx.lineTo(-37+this.x,-138+this.y);
+ctx.lineTo(-37+this.x,-139+this.y);
+ctx.lineTo(-39+this.x,-142+this.y);
+ctx.lineTo(-40+this.x,-142+this.y);
+ctx.lineTo(-41+this.x,-142+this.y);
+ctx.lineTo(-41+this.x,-143+this.y);
+ctx.lineTo(-41+this.x,-144+this.y);
+ctx.lineTo(-42+this.x,-144+this.y);
+ctx.lineTo(-43+this.x,-144+this.y);
+ctx.lineTo(-43+this.x,-145+this.y);
+ctx.lineTo(-44+this.x,-145+this.y);
+ctx.lineTo(-44+this.x,-146+this.y);
+ctx.lineTo(-45+this.x,-146+this.y);
+ctx.lineTo(-46+this.x,-146+this.y);
+ctx.lineTo(-46+this.x,-147+this.y);
+ctx.lineTo(-47+this.x,-147+this.y);
+ctx.lineTo(-48+this.x,-147+this.y);
+ctx.lineTo(-48+this.x,-148+this.y);
+ctx.lineTo(-49+this.x,-148+this.y);
+ctx.lineTo(-50+this.x,-148+this.y);
+ctx.lineTo(-51+this.x,-148+this.y);
+ctx.lineTo(-52+this.x,-148+this.y);
+ctx.lineTo(-53+this.x,-148+this.y);
+ctx.lineTo(-54+this.x,-148+this.y);
+ctx.lineTo(-55+this.x,-148+this.y);
+ctx.lineTo(-56+this.x,-148+this.y);
+ctx.lineTo(-57+this.x,-148+this.y);
+ctx.lineTo(-58+this.x,-148+this.y);
+ctx.lineTo(-59+this.x,-148+this.y);
+ctx.lineTo(-60+this.x,-148+this.y);
+ctx.lineTo(-61+this.x,-148+this.y);
+ctx.lineTo(-62+this.x,-148+this.y);
+ctx.lineTo(-63+this.x,-148+this.y);
+ctx.lineTo(-64+this.x,-148+this.y);
+ctx.lineTo(-65+this.x,-148+this.y);
+ctx.lineTo(-65+this.x,-147+this.y);
+ctx.lineTo(-66+this.x,-147+this.y);
+ctx.lineTo(-67+this.x,-147+this.y);
+ctx.lineTo(-67+this.x,-146+this.y);
+ctx.lineTo(-68+this.x,-146+this.y);
+ctx.lineTo(-69+this.x,-146+this.y);
+ctx.lineTo(-70+this.x,-145+this.y);
+ctx.lineTo(-71+this.x,-144+this.y);
+ctx.lineTo(-72+this.x,-144+this.y);
+ctx.lineTo(-73+this.x,-144+this.y);
+ctx.lineTo(-73+this.x,-143+this.y);
+ctx.lineTo(-74+this.x,-143+this.y);
+ctx.lineTo(-75+this.x,-143+this.y);
+ctx.lineTo(-76+this.x,-143+this.y);
+ctx.lineTo(-77+this.x,-143+this.y);
+ctx.lineTo(-78+this.x,-143+this.y);
+ctx.lineTo(-79+this.x,-142+this.y);
+ctx.lineTo(-80+this.x,-142+this.y);
+ctx.lineTo(-81+this.x,-142+this.y);
+ctx.lineTo(-82+this.x,-142+this.y);
+ctx.lineTo(-83+this.x,-141+this.y);
+ctx.lineTo(-84+this.x,-141+this.y);
+ctx.lineTo(-85+this.x,-141+this.y);
+ctx.lineTo(-86+this.x,-141+this.y);
+ctx.lineTo(-87+this.x,-141+this.y);
+ctx.lineTo(-88+this.x,-141+this.y);
+ctx.lineTo(-88+this.x,-140+this.y);
+ctx.lineTo(-89+this.x,-139+this.y);
+ctx.lineTo(-89+this.x,-138+this.y);
+ctx.lineTo(-89+this.x,-137+this.y);
+ctx.lineTo(-90+this.x,-137+this.y);
+ctx.lineTo(-90+this.x,-136+this.y);
+ctx.lineTo(-90+this.x,-135+this.y);
+ctx.lineTo(-90+this.x,-134+this.y);
+ctx.lineTo(-90+this.x,-133+this.y);
+ctx.lineTo(-91+this.x,-133+this.y);
+ctx.lineTo(-91+this.x,-132+this.y);
+ctx.lineTo(-91+this.x,-131+this.y);
+ctx.lineTo(-91+this.x,-130+this.y);
+ctx.lineTo(-91+this.x,-129+this.y);
+ctx.lineTo(-92+this.x,-129+this.y);
+ctx.lineTo(-92+this.x,-128+this.y);
+ctx.lineTo(-92+this.x,-127+this.y);
+ctx.lineTo(-93+this.x,-127+this.y);
+ctx.lineTo(-94+this.x,-127+this.y);
+ctx.lineTo(-94+this.x,-126+this.y);
+ctx.lineTo(-94+this.x,-125+this.y);
+ctx.lineTo(-94+this.x,-124+this.y);
+ctx.lineTo(-94+this.x,-123+this.y);
+ctx.lineTo(-95+this.x,-123+this.y);
+ctx.lineTo(-95+this.x,-122+this.y);
+ctx.lineTo(-95+this.x,-121+this.y);
+ctx.lineTo(-95+this.x,-120+this.y);
+ctx.lineTo(-95+this.x,-119+this.y);
+ctx.lineTo(-95+this.x,-118+this.y);
+ctx.lineTo(-95+this.x,-117+this.y);
+ctx.lineTo(-95+this.x,-115+this.y);
+ctx.lineTo(-95+this.x,-114+this.y);
+ctx.lineTo(-94+this.x,-114+this.y);
+ctx.lineTo(-94+this.x,-113+this.y);
+ctx.lineTo(-93+this.x,-112+this.y);
+ctx.lineTo(-92+this.x,-112+this.y);
+ctx.lineTo(-92+this.x,-111+this.y);
+ctx.lineTo(-92+this.x,-110+this.y);
+ctx.lineTo(-91+this.x,-109+this.y);
+ctx.lineTo(-90+this.x,-109+this.y);
+ctx.lineTo(-90+this.x,-108+this.y);
+ctx.lineTo(-89+this.x,-108+this.y);
+ctx.lineTo(-89+this.x,-107+this.y);
+ctx.lineTo(-88+this.x,-107+this.y);
+ctx.lineTo(-88+this.x,-106+this.y);
+ctx.lineTo(-85+this.x,-103+this.y);
+ctx.lineTo(-84+this.x,-103+this.y);
+ctx.lineTo(-84+this.x,-102+this.y);
+ctx.lineTo(-83+this.x,-102+this.y);
+ctx.lineTo(-82+this.x,-102+this.y);
+ctx.lineTo(-82+this.x,-101+this.y);
+ctx.lineTo(-82+this.x,-100+this.y);
+ctx.lineTo(-81+this.x,-100+this.y);
+ctx.lineTo(-81+this.x,-99+this.y);
+ctx.lineTo(-80+this.x,-99+this.y);
+ctx.lineTo(-80+this.x,-98+this.y);
+ctx.lineTo(-79+this.x,-98+this.y);
+ctx.lineTo(-78+this.x,-98+this.y);
+ctx.lineTo(-78+this.x,-97+this.y);
+ctx.lineTo(-77+this.x,-97+this.y);
+ctx.lineTo(-76+this.x,-97+this.y);
+ctx.lineTo(-76+this.x,-96+this.y);
+ctx.lineTo(-75+this.x,-96+this.y);
+ctx.lineTo(-74+this.x,-96+this.y);
+ctx.lineTo(-73+this.x,-96+this.y);
+ctx.lineTo(-72+this.x,-96+this.y);
+ctx.lineTo(-71+this.x,-96+this.y);
+ctx.lineTo(-70+this.x,-96+this.y);
+ctx.lineTo(-69+this.x,-96+this.y);
+ctx.lineTo(-68+this.x,-96+this.y);
+ctx.lineTo(-67+this.x,-96+this.y);
+ctx.lineTo(-66+this.x,-96+this.y);
+ctx.lineTo(-65+this.x,-96+this.y);
+ctx.lineTo(-64+this.x,-96+this.y);
+ctx.lineTo(-63+this.x,-96+this.y);
+ctx.lineTo(-62+this.x,-96+this.y);
+ctx.lineTo(-61+this.x,-96+this.y);
+ctx.lineTo(-61+this.x,-97+this.y);
+ctx.lineTo(-61+this.x,-98+this.y);
+ctx.lineTo(-60+this.x,-98+this.y);
+ctx.lineTo(-60+this.x,-99+this.y);
+ctx.lineTo(-59+this.x,-99+this.y);
+ctx.lineTo(-59+this.x,-100+this.y);
+ctx.lineTo(-58+this.x,-100+this.y);
+ctx.lineTo(-58+this.x,-101+this.y);
+ctx.lineTo(-57+this.x,-101+this.y);
+ctx.lineTo(-56+this.x,-101+this.y);
+ctx.lineTo(-56+this.x,-102+this.y);
+ctx.lineTo(-55+this.x,-102+this.y);
+ctx.lineTo(-55+this.x,-103+this.y);
+ctx.lineTo(-54+this.x,-103+this.y);
+ctx.lineTo(-53+this.x,-103+this.y);
+ctx.lineTo(-52+this.x,-104+this.y);
+ctx.lineTo(-51+this.x,-104+this.y);
+ctx.lineTo(-51+this.x,-105+this.y);
+ctx.lineTo(-50+this.x,-105+this.y);
+ctx.lineTo(-49+this.x,-105+this.y);
+ctx.lineTo(-48+this.x,-105+this.y);
+ctx.lineTo(-47+this.x,-105+this.y);
+ctx.lineTo(-46+this.x,-105+this.y);
+ctx.lineTo(-46+this.x,-106+this.y);
+ctx.lineTo(-45+this.x,-106+this.y);
+ctx.lineTo(-44+this.x,-106+this.y);
+ctx.lineTo(-43+this.x,-106+this.y);
+ctx.lineTo(-43+this.x,-107+this.y);
+ctx.lineTo(-42+this.x,-107+this.y);
+ctx.lineTo(-41+this.x,-107+this.y);
+ctx.lineTo(-41+this.x,-108+this.y);
+ctx.lineTo(-41+this.x,-109+this.y);
+ctx.lineTo(-40+this.x,-109+this.y);
+ctx.lineTo(-40+this.x,-110+this.y);
+ctx.lineTo(-39+this.x,-110+this.y);
+ctx.lineTo(-39+this.x,-111+this.y);
+ctx.lineTo(-38+this.x,-111+this.y);
+ctx.lineTo(-37+this.x,-111+this.y);
+ctx.lineTo(-37+this.x,-112+this.y);
+ctx.lineTo(-36+this.x,-112+this.y);
+ctx.lineTo(-36+this.x,-113+this.y);
+ctx.lineTo(-35+this.x,-113+this.y);
+ctx.lineTo(-35+this.x,-114+this.y);
+ctx.lineTo(-35+this.x,-115+this.y);
+ctx.lineTo(-35+this.x,-116+this.y);
+ctx.lineTo(-35+this.x,-117+this.y);
+ctx.lineTo(-34+this.x,-117+this.y);
+ctx.lineTo(-34+this.x,-118+this.y);
+ctx.lineTo(-34+this.x,-119+this.y);
+ctx.lineTo(-34+this.x,-120+this.y);
+ctx.lineTo(-34+this.x,-121+this.y);
+ctx.lineTo(-34+this.x,-122+this.y);
+ctx.lineTo(-34+this.x,-123+this.y);
+ctx.lineTo(-34+this.x,-124+this.y);
+ctx.lineTo(-34+this.x,-125+this.y);
+ctx.lineTo(-34+this.x,-126+this.y);
+ctx.lineTo(-34+this.x,-127+this.y);
+ctx.lineTo(-34+this.x,-128+this.y);
+ctx.lineTo(-34+this.x,-129+this.y);
+ctx.lineTo(-34+this.x,-130+this.y);
+ctx.lineTo(-34+this.x,-131+this.y);
+ctx.lineTo(-34+this.x,-132+this.y);
+ctx.lineTo(-34+this.x,-133+this.y);
+ctx.lineTo(-34+this.x,-134+this.y);
+ctx.lineTo(-34+this.x,-135+this.y);
+ctx.lineTo(-34+this.x,-136+this.y);
+ctx.moveTo(-80+this.x,-130+this.y);
+ctx.lineTo(-80+this.x,-130+this.y);
+ctx.lineTo(-81+this.x,-129+this.y);
+ctx.lineTo(-81+this.x,-128+this.y);
+ctx.lineTo(-81+this.x,-127+this.y);
+ctx.lineTo(-81+this.x,-126+this.y);
+ctx.lineTo(-81+this.x,-125+this.y);
+ctx.lineTo(-81+this.x,-124+this.y);
+ctx.lineTo(-81+this.x,-123+this.y);
+ctx.lineTo(-82+this.x,-123+this.y);
+ctx.lineTo(-83+this.x,-122+this.y);
+ctx.lineTo(-83+this.x,-121+this.y);
+ctx.lineTo(-83+this.x,-120+this.y);
+ctx.lineTo(-83+this.x,-119+this.y);
+ctx.lineTo(-83+this.x,-118+this.y);
+ctx.lineTo(-83+this.x,-117+this.y);
+ctx.lineTo(-83+this.x,-116+this.y);
+ctx.lineTo(-83+this.x,-115+this.y);
+ctx.lineTo(-82+this.x,-114+this.y);
+ctx.lineTo(-81+this.x,-114+this.y);
+ctx.lineTo(-80+this.x,-114+this.y);
+ctx.lineTo(-79+this.x,-114+this.y);
+ctx.lineTo(-78+this.x,-114+this.y);
+ctx.lineTo(-77+this.x,-114+this.y);
+ctx.lineTo(-77+this.x,-115+this.y);
+ctx.lineTo(-76+this.x,-115+this.y);
+ctx.lineTo(-75+this.x,-115+this.y);
+ctx.lineTo(-75+this.x,-116+this.y);
+ctx.lineTo(-74+this.x,-116+this.y);
+ctx.lineTo(-74+this.x,-117+this.y);
+ctx.lineTo(-73+this.x,-117+this.y);
+ctx.lineTo(-73+this.x,-118+this.y);
+ctx.lineTo(-72+this.x,-119+this.y);
+ctx.lineTo(-72+this.x,-120+this.y);
+ctx.lineTo(-72+this.x,-121+this.y);
+ctx.lineTo(-72+this.x,-122+this.y);
+ctx.lineTo(-71+this.x,-122+this.y);
+ctx.lineTo(-71+this.x,-123+this.y);
+ctx.lineTo(-71+this.x,-124+this.y);
+ctx.lineTo(-71+this.x,-125+this.y);
+ctx.lineTo(-71+this.x,-126+this.y);
+ctx.lineTo(-71+this.x,-127+this.y);
+ctx.lineTo(-71+this.x,-128+this.y);
+ctx.lineTo(-71+this.x,-129+this.y);
+ctx.lineTo(-71+this.x,-130+this.y);
+ctx.lineTo(-72+this.x,-130+this.y);
+ctx.lineTo(-75+this.x,-130+this.y);
+ctx.lineTo(-76+this.x,-130+this.y);
+ctx.lineTo(-77+this.x,-130+this.y);
+ctx.lineTo(-79+this.x,-130+this.y);
+ctx.lineTo(-80+this.x,-130+this.y);
+ctx.moveTo(-51+this.x,-119+this.y);
+ctx.lineTo(-51+this.x,-119+this.y);
+ctx.lineTo(-51+this.x,-120+this.y);
+ctx.lineTo(-51+this.x,-121+this.y);
+ctx.lineTo(-51+this.x,-122+this.y);
+ctx.lineTo(-50+this.x,-122+this.y);
+ctx.lineTo(-49+this.x,-122+this.y);
+ctx.lineTo(-49+this.x,-123+this.y);
+ctx.lineTo(-48+this.x,-123+this.y);
+ctx.lineTo(-48+this.x,-124+this.y);
+ctx.lineTo(-48+this.x,-125+this.y);
+ctx.lineTo(-47+this.x,-125+this.y);
+ctx.lineTo(-46+this.x,-125+this.y);
+ctx.lineTo(-45+this.x,-125+this.y);
+ctx.lineTo(-44+this.x,-125+this.y);
+ctx.lineTo(-43+this.x,-125+this.y);
+ctx.lineTo(-43+this.x,-124+this.y);
+ctx.lineTo(-43+this.x,-123+this.y);
+ctx.lineTo(-43+this.x,-122+this.y);
+ctx.lineTo(-43+this.x,-121+this.y);
+ctx.lineTo(-44+this.x,-121+this.y);
+ctx.lineTo(-44+this.x,-120+this.y);
+ctx.lineTo(-45+this.x,-120+this.y);
+ctx.lineTo(-45+this.x,-119+this.y);
+ctx.lineTo(-46+this.x,-119+this.y);
+ctx.lineTo(-46+this.x,-118+this.y);
+ctx.lineTo(-47+this.x,-118+this.y);
+ctx.lineTo(-47+this.x,-117+this.y);
+ctx.lineTo(-48+this.x,-117+this.y);
+ctx.lineTo(-49+this.x,-117+this.y);
+ctx.lineTo(-49+this.x,-118+this.y);
+ctx.lineTo(-49+this.x,-119+this.y);
+ctx.lineTo(-49+this.x,-120+this.y);
+ctx.lineTo(-50+this.x,-120+this.y);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		ctx.closePath();
+		ctx.lineWidth = 3;
+		ctx.fillStyle = 'gray';
+		ctx.fill();
+		ctx.strokeStyle = 'black';
+		ctx.stroke();
+
+		
         ctx.restore();   
     }
     //calculate next position
@@ -281,7 +620,7 @@ function space(color, x, y, type) {
             }
         } 
         //bounce back from walls
-        if (this.y < 10 || this.y > 600 || this.x < 10 || this.x > 970) {
+        if (this.y < 10 || this.y > 300 || this.x < 10 || this.x > 500) {
             this.angle = this.angle + 180;
         }  
         //if engaged in horizon, move towards black hole
