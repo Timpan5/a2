@@ -17,9 +17,6 @@ var ob9;
 var ob10;
 var BH = [];
 var count = 0;
-var BH1;
-var BH2;
-var BH3;
 var one = false;
 var GlobalSpeed;
 
@@ -57,20 +54,6 @@ function init() {
 	currentScore = 200;
 
     GlobalSpeed = 5;
-	document.getElementById("pause").onclick = function() {	
-		var img = document.getElementById('pausebutton');
-		if (pause) {
-			pause = 0;
-            GlobalSpeed = 1;
-			img.src = "assets/images/pause.png";
-		}
-		else {
-			pause = 1;
-            GlobalSpeed = 0;
-			img.src = "assets/images/resume.png";
-		}
-
-	};
 	window.setInterval(timer, 1000);
 
     //create space objects
@@ -111,7 +94,7 @@ function firstLevel() {
 	
 	document.getElementById("score").innerHTML = currentScore; 
      
-	sec = 3;
+	sec = 99;
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
@@ -119,11 +102,13 @@ function firstLevel() {
 		var img = document.getElementById('pausebutton');
 		if (pause) {
 			pause = 0;
+            GlobalSpeed = 5;
 			img.src = "assets/images/pause.png";
 			document.getElementById("pauseoverlay").style.display = "none";
 		}
 		else {
 			pause = 1;
+            GlobalSpeed = 0;
 			img.src = "assets/images/resume.png";
 			document.getElementById("pauseoverlay").style.display = "initial";
 		}
@@ -193,7 +178,7 @@ function secondLevel() {
 	
 	document.getElementById("score").innerHTML = currentScore; 
      
-	sec = 3;
+	sec = 99;
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
