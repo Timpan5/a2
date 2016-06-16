@@ -56,16 +56,16 @@ function init() {
     GlobalSpeed = 5;
 
     //create space objects
-	ob1 = new space(30, 30, "red", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob2 = new space(30, 30, "blue", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob3 = new space(30, 30, "green", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob4 = new space(30, 30, "purple", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob5 = new space(30, 30, "yellow", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob6 = new space(30, 30, "brown", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob7 = new space(30, 30, "gray", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob8 = new space(30, 30, "white", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob9 = new space(30, 30, "teal", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob10 = new space(30, 30, "orange", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+	ob1 = new space("red", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob2 = new space("blue", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob3 = new space("green", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob4 = new space("purple", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob5 = new space("yellow", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob6 = new space("brown", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob7 = new space("gray", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob8 = new space("white", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob9 = new space("teal", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob10 = new space("orange", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
     myGameArea.start();
 
     //click handler
@@ -230,11 +230,11 @@ var myGameArea = {
     }
 }
 
-function space(width, height, color, x, y, type) {
+function space(color, x, y, type) {
     //object for space object
     this.type = type;
-    this.width = width;
-    this.height = height;
+    this.width = 50;
+    this.height = 50;
     this.speed = GlobalSpeed;
     this.angle = Math.floor(Math.random() * 360) + 0; //direction
     this.x = x;
