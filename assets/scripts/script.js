@@ -17,9 +17,6 @@ var ob9;
 var ob10;
 var BH = [];
 var count = 0;
-var BH1;
-var BH2;
-var BH3;
 var one = false;
 var GlobalSpeed;
 
@@ -60,33 +57,18 @@ function init() {
 	currentScore = 200;
 
     GlobalSpeed = 5;
-	document.getElementById("pause").onclick = function() {	
-		var img = document.getElementById('pausebutton');
-		if (pause) {
-			pause = 0;
-            GlobalSpeed = 1;
-			img.src = "assets/images/pause.png";
-		}
-		else {
-			pause = 1;
-            GlobalSpeed = 0;
-			img.src = "assets/images/resume.png";
-		}
-
-	};
-	window.setInterval(timer, 1000);
 
     //create space objects
-	ob1 = new space(30, 30, "red", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob2 = new space(30, 30, "blue", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob3 = new space(30, 30, "green", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob4 = new space(30, 30, "purple", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob5 = new space(30, 30, "yellow", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob6 = new space(30, 30, "brown", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob7 = new space(30, 30, "gray", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob8 = new space(30, 30, "white", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob9 = new space(30, 30, "teal", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
-    ob10 = new space(30, 30, "orange", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+	ob1 = new space("red", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob2 = new space("blue", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob3 = new space("green", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob4 = new space("purple", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob5 = new space("yellow", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob6 = new space("brown", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob7 = new space("gray", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob8 = new space("white", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob9 = new space("teal", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    ob10 = new space("orange", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
     myGameArea.start();
 
     //click handler
@@ -116,7 +98,11 @@ function firstLevel() {
 	
 	document.getElementById("score").innerHTML = currentScore; 
      
+<<<<<<< HEAD
 	sec = 60;
+=======
+	sec = 99;
+>>>>>>> origin/master
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
@@ -124,23 +110,19 @@ function firstLevel() {
 		var img = document.getElementById('pausebutton');
 		if (pause) {
 			pause = 0;
+            GlobalSpeed = 5;
 			img.src = "assets/images/pause.png";
 			document.getElementById("pauseoverlay").style.display = "none";
 		}
 		else {
 			pause = 1;
+            GlobalSpeed = 0;
 			img.src = "assets/images/resume.png";
 			document.getElementById("pauseoverlay").style.display = "initial";
 		}
 
 	};
 	
-
-
-	test = new component(30, 30, "red", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    test2 = new component(30, 30, "blue", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    test3 = new component(30, 30, "green", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    BH = new hole(200, 100);
     myGameArea.start();
 	
 }
@@ -152,7 +134,7 @@ function firstLevel() {
 function timer() {
 	
 	if (pause == 0) {
-		sec = sec - 1;
+		sec -= 1;
 		document.getElementById("second").innerHTML = sec + " seconds";
 	
 		if (sec == 0 && currentLevel == 1) {
@@ -198,7 +180,11 @@ function secondLevel() {
 	
 	document.getElementById("score").innerHTML = currentScore; 
      
+<<<<<<< HEAD
 	sec = 60;
+=======
+	sec = 99;
+>>>>>>> origin/master
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
@@ -257,11 +243,11 @@ var myGameArea = {
     }
 }
 
-function space(width, height, color, x, y, type) {
+function space(color, x, y, type) {
     //object for space object
     this.type = type;
-    this.width = width;
-    this.height = height;
+    this.width = 50;
+    this.height = 50;
     this.speed = GlobalSpeed;
     this.angle = Math.floor(Math.random() * 360) + 0; //direction
     this.x = x;
