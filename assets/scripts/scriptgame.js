@@ -96,10 +96,6 @@ function timer() {
 }
 
 
-function PAUSE() {
-    PAUSE = setTimeout(updateGameArea, 3000);
-}
-
 var myGameArea = {
     //set up canvas
     canvas : document.getElementById("Canvas"),

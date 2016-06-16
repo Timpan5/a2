@@ -35,6 +35,8 @@ function init() {
 		localStorage.setItem("highscore", "0");
 	}
 
+
+
 	
 	document.getElementById("highscore").innerHTML = localStorage.getItem("highscore"); 
 	
@@ -66,6 +68,7 @@ function init() {
     ob8 = new space("white", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
     ob9 = new space("teal", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
     ob10 = new space("orange", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
+    myGameArea.stop();
     myGameArea.start();
 
     //click handler
@@ -93,7 +96,7 @@ function firstLevel() {
 	
 	document.getElementById("score").innerHTML = currentScore; 
      
-	sec = 99;
+	sec = 10;
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
@@ -113,7 +116,7 @@ function firstLevel() {
 		}
 
 	};
-	
+	myGameArea.stop();
     myGameArea.start();
 	
 }
@@ -150,11 +153,15 @@ function tran1() {
 	//document.getElementById("Canvas").style.display = "none";
 	//document.getElementById("Canvas").style.width = "1px";
 	//document.getElementById("Canvas").style.height = "1px";
-	myGameArea.clear();
+	myGameArea.stop();
+    myGameArea.clear();
+    
 	
 	document.getElementById("transition1").style.display = "initial";
 
 	document.getElementById("currentscore").innerHTML = currentScore; 
+
+    init();
 
 }
 
@@ -166,6 +173,7 @@ function secondLevel() {
 	document.getElementById("Canvas").style.display = "initial";
 	
 	currentLevel = 2;
+    GlobalSpeed = 0;
 	
 	document.getElementById("level").innerHTML = "Level " + currentLevel; 
 	
@@ -175,21 +183,28 @@ function secondLevel() {
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
+    count = 0;
+    for (i = 0; i < count; i++) { 
+        BH[i].x = -100;
+    }
+    BH = [];
 	document.getElementById("pause").onclick = function() {	
 		var img = document.getElementById('pausebutton');
 		if (pause) {
 			pause = 0;
+            GlobalSpeed = 5;
 			img.src = "assets/images/pause.png";
 			document.getElementById("pauseoverlay").style.display = "none";
 		}
 		else {
 			pause = 1;
+            GlobalSpeed = 0;
 			img.src = "assets/images/resume.png";
 			document.getElementById("pauseoverlay").style.display = "initial";
 		}
 
 	};
-	
+	myGameArea.stop();
 	myGameArea.start();
 }
 
@@ -197,6 +212,7 @@ function tran2() {
 	document.getElementById("gamescreen").style.display = "none";
 	//document.getElementById("Canvas").style.width = "1px";
 	//document.getElementById("Canvas").style.height = "1px";
+    myGameArea.stop();
 	myGameArea.clear();
 	
 	document.getElementById("transition2").style.display = "initial";
@@ -310,8 +326,19 @@ function hole(x, y, type) {
     this.type = type; //Type of blackhole, fast , slow etc.
     //draw blackhole
     this.update = function() {
-        if (this.eat == 3){
-            this.x = -100;
+        //code for differnt types of black holes and their eatining limit
+        if (this.type == 3){
+            if (this.eat == 1) {
+                this.x = -100;
+            }
+        } else if (this.type == 2){
+            if (this.eat == 2){
+                this.x = -100;
+            }
+        } else if (this.type == 1){
+            if (this.eat == 3){
+                this.x = -100;
+            }
         }
         ctx = myGameArea.context;
         if (this.type == 1){
@@ -363,7 +390,13 @@ function eventH (a, b){
     }
     return crash;
 }
-
+function posgen(){
+    this.x = Math.floor(Math.random() * 900;
+    this.y = Math.floor(Math.random() * 900;
+    for (i = 0; i < count; i++) { 
+        BH[i].update();
+    } 
+}
 function gen(){
     //generate black holes every 5 seconds
     if (sec%5 == 0 && one == false){
@@ -371,6 +404,7 @@ function gen(){
         count += 1;
         if (currentLevel == 2){
             BH[count] = new hole(Math.floor(Math.random() * 900), Math.floor(Math.random() * 500), Btype());
+            count += 1;
         }
         one = true;
     } else if (sec%5 != 0){
