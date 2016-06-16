@@ -54,7 +54,6 @@ function init() {
 	currentScore = 200;
 
     GlobalSpeed = 5;
-	window.setInterval(timer, 1000);
 
     //create space objects
 	ob1 = new space(30, 30, "red", Math.floor(Math.random() * 900) + 50, Math.floor(Math.random() * 500) + 50);
@@ -115,12 +114,6 @@ function firstLevel() {
 
 	};
 	
-
-
-	test = new component(30, 30, "red", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    test2 = new component(30, 30, "blue", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    test3 = new component(30, 30, "green", Math.floor(Math.random() * 350) + 50, Math.floor(Math.random() * 200) + 50);
-    BH = new hole(200, 100);
     myGameArea.start();
 	
 }
@@ -132,7 +125,7 @@ function firstLevel() {
 function timer() {
 	
 	if (pause == 0) {
-		sec = sec - 1;
+		sec -= 1;
 		document.getElementById("second").innerHTML = sec + " seconds";
 	
 		if (sec == 0 && currentLevel == 1) {
