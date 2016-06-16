@@ -19,6 +19,7 @@ var BH = [];
 var count = 0;
 var one = false;
 var GlobalSpeed;
+var lose = 0;
 
 
 window.onload = function() {
@@ -95,8 +96,7 @@ function firstLevel() {
 	document.getElementById("level").innerHTML = "Level " + currentLevel; 
 	
 	document.getElementById("score").innerHTML = currentScore; 
-     
-	sec = 10;
+	sec = 60;
 	document.getElementById("second").innerHTML = sec + " seconds";
 	
 	pause = 0;
@@ -154,13 +154,13 @@ function tran1() {
 	//document.getElementById("Canvas").style.height = "1px";
 	myGameArea.stop();
     myGameArea.clear();
+    lose = 0;
     
 	
 	document.getElementById("transition1").style.display = "initial";
 
 	document.getElementById("currentscore").innerHTML = currentScore; 
 
-    init();
 
 }
 
@@ -213,6 +213,7 @@ function tran2() {
 	//document.getElementById("Canvas").style.height = "1px";
     myGameArea.stop();
 	myGameArea.clear();
+    lose = 0;
 	
 	document.getElementById("transition2").style.display = "initial";
 	
@@ -311,6 +312,7 @@ function space(color, x, y, type) {
             this.speed = 0; //stop object movement
             this.own.eat += 1; //add a counter to blackhole
             currentScore -= 50; //add score
+            lose += 1;
         }
     }
 }
@@ -340,15 +342,7 @@ function hole(x, y, type) {
             }
         }
         ctx = myGameArea.context;
-        if (this.type == 1){
-            ctx.fillStyle = 'rgba(0,0,0,0.7)';
-        } else if (this.type == 2){
-            ctx.fillStyle = 'rgba(100,0,0,0.7)';
-        } else if (this.type == 3){
-            ctx.fillStyle = 'rgba(100,100,0,0.7)';
-        }
-        ctx.fillRect(this.x - 25, this.y - 25, this.width + 50, this.height + 50);   
-        ctx.fillStyle = 'rgba(225,225,225,0.7)';
+        ctx.fillStyle = 'rgba(0,0,0,0.7)';
         ctx.fillRect(this.x, this.y, this.width, this.height);      
     } 
     //see if blackhole is clicked
@@ -444,6 +438,9 @@ function updateGameArea() {
     ob8.update();
     ob9.update();
     ob10.update();
+    if (lose == 10){
+        init();
+    }
 
     
 }
